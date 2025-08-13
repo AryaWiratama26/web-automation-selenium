@@ -2,6 +2,8 @@ from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait
 import time
 from datetime import date
 
@@ -50,27 +52,62 @@ class AutomationWeb:
             print(f"kesalahan {e}")
             DRIVER.close()
             
-    def make_board(self):
+    # def make_board(self):
         
-        try:
-            time.sleep(2)
-            button_create_board = DRIVER.find_element(By.CSS_SELECTOR, value="[data-testid='create-board-tile']")
-            time.sleep(4)
-            button_create_board.click()
-            time.sleep(5)
+    #     try:
+    #         time.sleep(2)
+    #         button_create_board = DRIVER.find_element(By.CSS_SELECTOR, value="[data-testid='create-board-tile']")
+    #         time.sleep(4)
+    #         button_create_board.click()
+    #         time.sleep(5)
             
-            board_title = DRIVER.find_element(By.CSS_SELECTOR, value="[data-testid='create-board-title-input']")
-            board_title.send_keys("Board Testing")
-            time.sleep(3)
+    #         board_title = DRIVER.find_element(By.CSS_SELECTOR, value="[data-testid='create-board-title-input']")
+    #         board_title.send_keys("Testing5")
+    #         time.sleep(3)
 
-            create_btn_final = DRIVER.find_element(By.CSS_SELECTOR, value="[data-testid='create-board-submit-button']")
-            create_btn_final.click()
-            time.sleep(5)
+    #         create_btn_final = DRIVER.find_element(By.CSS_SELECTOR, value="[data-testid='create-board-submit-button']")
+    #         create_btn_final.click()
+    #         time.sleep(10)
         
-        except Exception as e:
-            print(f"kesalahan {e}")
+    #     except Exception as e:
+    #         print(f"kesalahan {e}")
+            
+    def navigate_board(self):
+        time.sleep(5)
+        nav = DRIVER.find_element(By.CSS_SELECTOR, value="[title='{}']".format("Testing4"))
+        nav.click()
+
+        time.sleep(10)
+
+    def make_list(self):
+        time.sleep(5)
+
+        add_a_list = DRIVER.find_element(By.CSS_SELECTOR, value="[data-testid='list-composer-button']")
+        add_a_list.click()
+        
+        time.sleep(5)
+        
+        enter_list = DRIVER.find_element(By.CSS_SELECTOR, value="[data-testid='list-name-textarea']")
+        enter_list.send_keys("Testing Again")
+
+        time.sleep(5)
+        
+        submit_list = DRIVER.find_element(By.CSS_SELECTOR, value="[data-testid='list-composer-add-list-button']")
+        submit_list.click()
+
+        time.sleep(10)
+        
+    def log_navigate_make_list(self):
+        AutomationWeb.login(self)
+        AutomationWeb.navigate_board(self)
+        AutomationWeb.make_list(self)
+
+
 
             
+    
+            
+
             
             
     
