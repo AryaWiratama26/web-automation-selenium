@@ -3,7 +3,6 @@ from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.support.ui import WebDriverWait
 import time
 from datetime import date
 
@@ -52,25 +51,25 @@ class AutomationWeb:
             print(f"kesalahan {e}")
             DRIVER.close()
             
-    # def make_board(self):
+    def make_board(self):
         
-    #     try:
-    #         time.sleep(2)
-    #         button_create_board = DRIVER.find_element(By.CSS_SELECTOR, value="[data-testid='create-board-tile']")
-    #         time.sleep(4)
-    #         button_create_board.click()
-    #         time.sleep(5)
+        try:
+            time.sleep(2)
+            button_create_board = DRIVER.find_element(By.CSS_SELECTOR, value="[data-testid='create-board-tile']")
+            time.sleep(4)
+            button_create_board.click()
+            time.sleep(5)
             
-    #         board_title = DRIVER.find_element(By.CSS_SELECTOR, value="[data-testid='create-board-title-input']")
-    #         board_title.send_keys("Testing5")
-    #         time.sleep(3)
+            board_title = DRIVER.find_element(By.CSS_SELECTOR, value="[data-testid='create-board-title-input']")
+            board_title.send_keys("Testing5")
+            time.sleep(3)
 
-    #         create_btn_final = DRIVER.find_element(By.CSS_SELECTOR, value="[data-testid='create-board-submit-button']")
-    #         create_btn_final.click()
-    #         time.sleep(10)
+            create_btn_final = DRIVER.find_element(By.CSS_SELECTOR, value="[data-testid='create-board-submit-button']")
+            create_btn_final.click()
+            time.sleep(10)
         
-    #     except Exception as e:
-    #         print(f"kesalahan {e}")
+        except Exception as e:
+            print(f"kesalahan {e}")
     
     def back_to_home(self):
         time.sleep(5)
@@ -78,14 +77,14 @@ class AutomationWeb:
         btn_bck.click()
         time.sleep(10)
             
-    def navigate_board(self):
+    def navigate_board(self, name_of_board):
         time.sleep(5)
-        nav = DRIVER.find_element(By.CSS_SELECTOR, value="[title='{}']".format("chap"))
+        nav = DRIVER.find_element(By.CSS_SELECTOR, value="[title='{}']".format(name_of_board))
         nav.click()
 
         time.sleep(10)
 
-    def make_list(self):
+    def make_list(self, list_name):
         time.sleep(5)
 
         add_a_list = DRIVER.find_element(By.CSS_SELECTOR, value="[data-testid='list-composer-button']")
@@ -94,7 +93,7 @@ class AutomationWeb:
         time.sleep(5)
         
         enter_list = DRIVER.find_element(By.CSS_SELECTOR, value="[data-testid='list-name-textarea']")
-        enter_list.send_keys("Testing Againn")
+        enter_list.send_keys(str(list_name))
 
         time.sleep(5)
         
@@ -105,28 +104,30 @@ class AutomationWeb:
         
         
         
-    def add_card(self):
-        first_btn_add_card = DRIVER.find_element(By.CSS_SELECTOR, value="button[aria-label='Add a card in {}']".format("Testing Againn"))
+    def add_card(self, list_name, card_content):
+        first_btn_add_card = DRIVER.find_element(By.CSS_SELECTOR, value="button[aria-label='Add a card in {}']".format(str(list_name)))
         first_btn_add_card.click()
         
         time.sleep(5)
 
         enter_card = DRIVER.find_element(By.CSS_SELECTOR, value="[data-testid='list-card-composer-textarea']")
-        enter_card.send_keys("FrontEnd")
+        enter_card.send_keys(card_content)
 
         time.sleep(5)
 
-        submit_card = DRIVER.find_element(By.CSS_SELECTOR, value="button[aria-label='Add card in {}']".format("Testing Againn"))
+        submit_card = DRIVER.find_element(By.CSS_SELECTOR, value="button[aria-label='Add card in {}']".format(str(list_name)))
         submit_card.click()
 
         time.sleep(10)
         
         
-    def log_navigate_make_list(self):
+    def log_navigate_make_list(self, name_of_board, list_name, card_content):
         AutomationWeb.login(self)
-        AutomationWeb.navigate_board(self)
-        AutomationWeb.make_list(self)
-        AutomationWeb.add_card(self)
+        AutomationWeb.navigate_board(self, name_of_board)
+        AutomationWeb.make_list(self, list_name)
+        AutomationWeb.add_card(self, list_name, card_content)
+        AutomationWeb.back_to_home(self)
+        
 
 
 

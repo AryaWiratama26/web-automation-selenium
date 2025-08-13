@@ -11,5 +11,4 @@ LINK_WEBSITE = os.getenv("LINK_LOGIN")
 
 if __name__ == "__main__":
     bot_satu = AutomationWeb(EMAIL=EMAIL_AKUN, PASSWORD=PASSWORD_AKUN, LINK_LOGIN=LINK_WEBSITE)
-    bot_satu.log_navigate_make_list()
-    bot_satu.back_to_home()
+    bot_satu.log_navigate_make_list(name_of_board="mwehehe", list_name="Todo", card_content="Make Regsiter Page")
