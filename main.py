@@ -12,3 +12,4 @@ LINK_WEBSITE = os.getenv("LINK_LOGIN")
 if __name__ == "__main__":
     bot_satu = AutomationWeb(EMAIL=EMAIL_AKUN, PASSWORD=PASSWORD_AKUN, LINK_LOGIN=LINK_WEBSITE)
     bot_satu.login()
+    bot_satu.make_board()

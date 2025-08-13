@@ -45,11 +45,32 @@ class AutomationWeb:
             # klik button
             continue_btn.click()
             time.sleep(10)
-
             
         except Exception as e:
             print(f"kesalahan {e}")
             DRIVER.close()
+            
+    def make_board(self):
+        
+        try:
+            time.sleep(2)
+            button_create_board = DRIVER.find_element(By.CSS_SELECTOR, value="[data-testid='create-board-tile']")
+            time.sleep(4)
+            button_create_board.click()
+            time.sleep(5)
+            
+            board_title = DRIVER.find_element(By.CSS_SELECTOR, value="[data-testid='create-board-title-input']")
+            board_title.send_keys("Board Testing")
+            time.sleep(3)
+
+            create_btn_final = DRIVER.find_element(By.CSS_SELECTOR, value="[data-testid='create-board-submit-button']")
+            create_btn_final.click()
+            time.sleep(5)
+        
+        except Exception as e:
+            print(f"kesalahan {e}")
+
+            
             
             
     
