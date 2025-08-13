@@ -121,7 +121,7 @@ class AutomationWeb:
         time.sleep(10)
         
         
-    def log_navigate_make_list(self, name_of_board, list_name, card_content):
+    def log_navigate_make_list_add_card(self, name_of_board, list_name, card_content):
         AutomationWeb.login(self)
         AutomationWeb.navigate_board(self, name_of_board)
         AutomationWeb.make_list(self, list_name)
