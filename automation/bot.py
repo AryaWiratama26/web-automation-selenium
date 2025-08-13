@@ -71,10 +71,16 @@ class AutomationWeb:
         
     #     except Exception as e:
     #         print(f"kesalahan {e}")
+    
+    def back_to_home(self):
+        time.sleep(5)
+        btn_bck = DRIVER.find_element(By.CSS_SELECTOR, value="a[aria-label='Back to home']")
+        btn_bck.click()
+        time.sleep(10)
             
     def navigate_board(self):
         time.sleep(5)
-        nav = DRIVER.find_element(By.CSS_SELECTOR, value="[title='{}']".format("Testing4"))
+        nav = DRIVER.find_element(By.CSS_SELECTOR, value="[title='{}']".format("chap"))
         nav.click()
 
         time.sleep(10)
@@ -88,7 +94,7 @@ class AutomationWeb:
         time.sleep(5)
         
         enter_list = DRIVER.find_element(By.CSS_SELECTOR, value="[data-testid='list-name-textarea']")
-        enter_list.send_keys("Testing Again")
+        enter_list.send_keys("Testing Againn")
 
         time.sleep(5)
         
@@ -97,10 +103,30 @@ class AutomationWeb:
 
         time.sleep(10)
         
+        
+        
+    def add_card(self):
+        first_btn_add_card = DRIVER.find_element(By.CSS_SELECTOR, value="button[aria-label='Add a card in {}']".format("Testing Againn"))
+        first_btn_add_card.click()
+        
+        time.sleep(5)
+
+        enter_card = DRIVER.find_element(By.CSS_SELECTOR, value="[data-testid='list-card-composer-textarea']")
+        enter_card.send_keys("FrontEnd")
+
+        time.sleep(5)
+
+        submit_card = DRIVER.find_element(By.CSS_SELECTOR, value="button[aria-label='Add card in {}']".format("Testing Againn"))
+        submit_card.click()
+
+        time.sleep(10)
+        
+        
     def log_navigate_make_list(self):
         AutomationWeb.login(self)
         AutomationWeb.navigate_board(self)
         AutomationWeb.make_list(self)
+        AutomationWeb.add_card(self)
 
 
 
