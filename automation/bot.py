@@ -1,10 +1,7 @@
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 import time
-from datetime import date
 
 CHROME_DRIVER_PATH = "/usr/local/bin/chromedriver"
 
@@ -72,54 +69,73 @@ class AutomationWeb:
             print(f"kesalahan {e}")
     
     def back_to_home(self):
-        time.sleep(5)
-        btn_bck = DRIVER.find_element(By.CSS_SELECTOR, value="a[aria-label='Back to home']")
-        btn_bck.click()
-        time.sleep(6)
+        try:
+            time.sleep(5)
+            btn_bck = DRIVER.find_element(By.CSS_SELECTOR, value="a[aria-label='Back to home']")
+            btn_bck.click()
+            time.sleep(6)
+
+        except Exception as e:
+            print(f"kesalahan {e}")
             
     def navigate_board(self, name_of_board):
-        time.sleep(5)
-        nav = DRIVER.find_element(By.CSS_SELECTOR, value="[title='{}']".format(name_of_board))
-        nav.click()
+        
+        try:
+            
+            time.sleep(5)
+            nav = DRIVER.find_element(By.CSS_SELECTOR, value="[title='{}']".format(name_of_board))
+            nav.click()
 
-        time.sleep(10)
+            time.sleep(10)
+            
+        except Exception as e:
+            print(f"kesalahan {e}")
 
     def make_list(self, list_name):
-        time.sleep(7)
+        
+        try:
+            
+            time.sleep(7)
 
-        add_a_list = DRIVER.find_element(By.CSS_SELECTOR, value="[data-testid='list-composer-button']")
-        add_a_list.click()
-        
-        time.sleep(5)
-        
-        enter_list = DRIVER.find_element(By.CSS_SELECTOR, value="[data-testid='list-name-textarea']")
-        enter_list.send_keys(str(list_name))
+            add_a_list = DRIVER.find_element(By.CSS_SELECTOR, value="[data-testid='list-composer-button']")
+            add_a_list.click()
+            
+            time.sleep(5)
+            
+            enter_list = DRIVER.find_element(By.CSS_SELECTOR, value="[data-testid='list-name-textarea']")
+            enter_list.send_keys(str(list_name))
 
-        time.sleep(5)
-        
-        submit_list = DRIVER.find_element(By.CSS_SELECTOR, value="[data-testid='list-composer-add-list-button']")
-        submit_list.click()
+            time.sleep(5)
+            
+            submit_list = DRIVER.find_element(By.CSS_SELECTOR, value="[data-testid='list-composer-add-list-button']")
+            submit_list.click()
 
-        time.sleep(10)
-        
+            time.sleep(10)
+
+        except Exception as e:
+            print(f"kesalahan {e}")
         
         
     def add_card(self, list_name, card_content):
-        first_btn_add_card = DRIVER.find_element(By.CSS_SELECTOR, value="button[aria-label='Add a card in {}']".format(str(list_name)))
-        first_btn_add_card.click()
-        
-        time.sleep(5)
+        try:
+            
+            first_btn_add_card = DRIVER.find_element(By.CSS_SELECTOR, value="button[aria-label='Add a card in {}']".format(str(list_name)))
+            first_btn_add_card.click()
+            
+            time.sleep(5)
 
-        enter_card = DRIVER.find_element(By.CSS_SELECTOR, value="[data-testid='list-card-composer-textarea']")
-        enter_card.send_keys(card_content)
+            enter_card = DRIVER.find_element(By.CSS_SELECTOR, value="[data-testid='list-card-composer-textarea']")
+            enter_card.send_keys(card_content)
 
-        time.sleep(5)
+            time.sleep(5)
 
-        submit_card = DRIVER.find_element(By.CSS_SELECTOR, value="button[aria-label='Add card in {}']".format(str(list_name)))
-        submit_card.click()
+            submit_card = DRIVER.find_element(By.CSS_SELECTOR, value="button[aria-label='Add card in {}']".format(str(list_name)))
+            submit_card.click()
 
-        time.sleep(10)
-        
+            time.sleep(10)
+            
+        except Exception as e:
+            print(f"kesalahan {e}")    
         
     def log_navigate_make_list_add_card(self, name_of_board, list_name, card_content):
         AutomationWeb.login(self)
