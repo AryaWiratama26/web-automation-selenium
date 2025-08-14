@@ -21,4 +21,6 @@ Paramater:
 - `list_name` = The name of list u want to create
 - `card_content` = Content of the card
 
+[Demo Videos](https://youtube.com/shorts/lBtMD4yAm3g?si=UVlgpZZOKUPrD78b) 
+
 Thank u. Maybe i'll update this code
